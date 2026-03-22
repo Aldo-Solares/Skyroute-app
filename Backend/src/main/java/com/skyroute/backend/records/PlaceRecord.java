@@ -1,0 +1,7 @@
+package com.skyroute.backend.records;
+
+import java.util.List;
+
+public record PlaceRecord(String name, String bestTime, String location, List<PicturesPlaceRecord> picturesPlace,
+        String categoryName, Boolean isFavorite, Integer commentCount, List<CommentRecord> comments) {
+}

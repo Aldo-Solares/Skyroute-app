@@ -1,0 +1,105 @@
+.rating {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Estrella */
+.star {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.star svg {
+  fill: #666;
+  transition:
+    fill 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Animaciones */
+.star:hover svg {
+  animation: shakeStar 0.6s ease-out;
+}
+
+.star.active svg {
+  animation: popStar 0.35s ease;
+}
+
+/* COLORES SEGÚN RATING GLOBAL */
+.rating[data-rating="1"] .star.active svg {
+  fill: #ef4444; /* rojo */
+}
+
+.rating[data-rating="2"] .star.active svg {
+  fill: #e06c2b; /* naranja */
+}
+
+.rating[data-rating="3"] .star.active svg {
+  fill: #b7781a; /* amarillo */
+}
+
+.rating[data-rating="4"] .star.active svg {
+  fill: #40b529; /* verde */
+}
+
+.rating[data-rating="5"] .star.active svg {
+  fill: #ffe100; /* morado */
+}
+
+/* Número */
+.star-number {
+  font-size: 12px;
+  margin-top: 2px;
+  color: #ccc;
+}
+
+/* Sombra */
+.ombre {
+  width: 28px;
+  height: 8px;
+  background: radial-gradient(
+    ellipse closest-side,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.star.active .ombre {
+  opacity: 1;
+}
+
+/* Animaciones */
+@keyframes shakeStar {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes popStar {
+  0% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,40 @@
+package com.skyroute.backend.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.skyroute.backend.records.PlaceLigthRecord;
+import com.skyroute.backend.service.UserPlaceService;
+
+@RestController
+@RequestMapping("/api")
+public class UserPlaceController {
+    @Autowired
+    UserPlaceService userPService;
+
+    @PutMapping("/user/{user}/place/{place}")
+    public ResponseEntity<String> createRelationship(@PathVariable String user, @PathVariable String place) {
+        userPService.createRelationship(user, place);
+        return new ResponseEntity<>("Relation successfully created", HttpStatus.OK);
+    }
+
+    @GetMapping("/userplace/ligth/{userName}")
+    public ResponseEntity<List<PlaceLigthRecord>> getAllPlacesByCatLigth(@PathVariable String userName) {
+        List<PlaceLigthRecord> places = userPService.getAllByUserLigth(userName);
+        return new ResponseEntity<>(places, HttpStatus.OK);
+    }
+    
+    @PutMapping("/deleterelation/user/{user}/place/{place}")
+    public ResponseEntity<String> deleteRelation(@PathVariable String user, @PathVariable String place){
+    	userPService.deleteRelationship(user, place);
+    	return new ResponseEntity<>("Relation successfully deleted", HttpStatus.OK);
+    }
+}

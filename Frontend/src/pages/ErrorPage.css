@@ -1,0 +1,52 @@
+.ErrorPage-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  color: var(--blue-color);
+  margin: auto;
+  user-select: none;
+  span {
+    margin-top: 10px;
+  }
+}
+
+.ErrorPage-Container h2 {
+  width: 80%;
+  margin: 0;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+#Warning {
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+}
+.error-button {
+  margin-top: 30px;
+  padding: 10px 25px;
+  background-color: var(--blue-color); /* Usa tu variable de color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+}
+
+.error-button:hover {
+  background-color: #0056b3; /* Un tono más oscuro del azul */
+  transform: scale(1.05);
+}
+
+.error-button:active {
+  transform: scale(0.95);
+}

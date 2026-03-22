@@ -1,0 +1,182 @@
+.layoutWithSidebar {
+  display: flex;
+  gap: 5rem;
+  padding: 0 6vw;
+  width: 100%;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* LEFT HERO */
+
+.leftHero {
+  width: 320px;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leftHero h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  color: var(--blue-color);
+  margin: 0;
+}
+
+.leftHero p {
+  margin: 1.5rem 0;
+  color: #4a5568;
+}
+
+/* GRID */
+
+.gridSection {
+  flex: 1;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ROW */
+
+.rowCard {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* IMAGE */
+
+.imageBlock {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.imageBlock img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageBlock:hover img {
+  transform: scale(1.05);
+}
+
+/* TITLE CON BLUR RESTAURADO */
+
+.titleOverlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.titleOverlay h3 {
+  margin: 0;
+  font-size: 26px;
+  color: white;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+}
+
+/* ADMIN */
+
+.adminButtons {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 6px;
+
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+.imageBlock:hover .adminButtons {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TEXT */
+
+.textBlockH {
+  max-width: 420px;
+}
+
+/* Normal (texto pegado al centro desde izquierda) */
+.rowCard .textBlockH {
+  justify-self: start;
+  text-align: left;
+}
+
+/* Reverse (texto pegado al centro desde derecha) */
+.rowCard.reverse .textBlockH {
+  justify-self: end;
+  text-align: right;
+}
+
+.textBlockH h3 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: var(--blue-color);
+}
+
+.textBlockH p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+/* CTA */
+
+.cta {
+  text-decoration: none;
+  color: var(--blue-color);
+  font-weight: 500;
+}
+
+/* REVERSE FIX REAL */
+
+.rowCard.reverse {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.rowCard.reverse .imageBlock {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.rowCard.reverse .textBlockH {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .layoutWithSidebar {
+    flex-direction: column;
+  }
+
+  .rowCard {
+    grid-template-columns: 1fr;
+  }
+
+  .textBlockH {
+    justify-self: start !important;
+    text-align: left !important;
+  }
+}

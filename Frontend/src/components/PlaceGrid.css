@@ -1,0 +1,83 @@
+.rowItem {
+  display: grid;
+  grid-template-columns: 24px 120px 1fr;
+  align-items: center;
+
+  gap: 0.5rem;
+  margin: 0.45rem 0;
+  padding-bottom: 0.35rem;
+
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.rowItem:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.icon {
+  text-align: center;
+}
+
+.label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.value {
+  word-break: break-word;
+  padding-left: 10px;
+}
+.deleteBox {
+  background: #111;
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  z-index: 10000;
+}
+
+.deleteActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btnYes {
+  background-color: #2ecc71; /* verde */
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btnYes:hover {
+  background-color: #27ae60;
+}
+
+.btnCancel {
+  background-color: #e74c3c; /* rojo */
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btnCancel:hover {
+  background-color: #c0392b;
+}
+
+/* Like button */
+
+.likeButtonWrapper {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 20;
+}

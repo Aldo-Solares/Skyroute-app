@@ -1,0 +1,362 @@
+/* ===== BACKDROP ===== */
+.pm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== MODAL ===== */
+.pm-dialog {
+  width: min(720px, 92vw);
+  max-height: 85vh;
+  padding: 26px;
+  border-radius: var(--radius);
+
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(120%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+
+  color: white;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ===== CLOSE ===== */
+.pm-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pm-close:hover {
+  transform: scale(1.2);
+}
+
+/* ===== TITLE ===== */
+.pm-dialog h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* ===== COMMENTS CONTAINER ===== */
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+/* ===== COMMENT CARD ===== */
+.cmt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 14px;
+
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+}
+
+.cmt-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* ===== HEADER ===== */
+.cmt-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== USER ===== */
+.cmt-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cmt-user-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  background: #e6eef6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 13px;
+  color: #1e3a8a;
+}
+
+.cmt-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cmt-username {
+  font-weight: 600;
+}
+
+.cmt-date {
+  font-size: 0.75rem;
+  color: #bbb;
+}
+
+/* ===== RATING ===== */
+.cmt-rating {
+  font-size: 0.9rem;
+}
+
+/* ===== TEXT ===== */
+.cmt-text {
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.cmt-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* ===== BOTONES (UNIFICADOS) ===== */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* ===== DELETE ===== */
+.cmt-delete,
+.pm-form-actions button[type="button"],
+.cmt-edit-actions button:last-child {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+
+  background: var(--button-cancel);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== EDIT ===== */
+.cmt-edit {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== EDIT BOX ===== */
+.cmt-edit-box {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cmt-edit-box textarea {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  outline: none;
+}
+
+/* ===== EDIT ACTIONS ===== */
+.cmt-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cmt-edit-actions button {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== SUCCESS BUTTONS ===== */
+.pm-addbtn,
+.pm-form-actions button[type="submit"],
+.cmt-edit-actions button:first-child {
+  background: var(--green-border);
+  color: white;
+}
+
+/* ===== IMAGES ===== */
+.cmt-images {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cmt-images img {
+  width: 110px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.25s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.cmt-images img:hover {
+  transform: scale(1.05);
+  border-color: var(--button-accept);
+}
+
+/* ===== ADD BUTTON ===== */
+.pm-addbtn {
+  width: 100%;
+  height: 44px;
+  margin-top: 18px;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== FORM ===== */
+.pm-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.pm-form textarea {
+  min-height: 100px;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  outline: none;
+}
+
+/* ===== FILE BUTTON ===== */
+.pm-dialog input[type="file"] {
+  display: none;
+}
+
+.pm-file {
+  display: flex;
+  justify-content: center;
+}
+
+.pm-file span {
+  height: 44px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--button-file);
+  color: white;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== ACTIONS ===== */
+.pm-form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pm-form-actions button {
+  flex: 1;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== PREVIEW ===== */
+.pm-preview {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pm-preview img {
+  width: 90px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--button-accept);
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.pm-preview img:hover {
+  transform: scale(1.08);
+}
+
+/* ===== ERROR ===== */
+.pm-error {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid rgba(255, 107, 107, 0.45);
+  color: #f87171;
+
+  font-size: 0.8rem;
+  text-align: center;
+
+  width: 90%;
+  margin-inline: auto;
+}
+
+/* ===== SCROLL ===== */
+.pm-dialog::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pm-dialog::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}

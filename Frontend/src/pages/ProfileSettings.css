@@ -1,0 +1,193 @@
+.Profile-Page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+
+  background-image:
+    linear-gradient(var(--overlay), var(--overlay)), var(--bg-profile);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ===== CENTER ===== */
+.Profile-Container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== CARD ===== */
+.Profile-Card {
+  width: min(380px, 92vw);
+  padding: 28px 26px;
+  border-radius: var(--radius);
+
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(120%);
+
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+
+  display: grid;
+  gap: 14px;
+}
+
+.Profile-Card h2 {
+  text-align: center;
+  color: white;
+}
+
+/* ===== FORM ===== */
+.Profile-Card form {
+  display: grid;
+  gap: 14px;
+}
+
+/* ===== IMAGE ===== */
+.profile-avatar-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-avatar-preview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--green-border);
+}
+
+/* ===== INPUTS ===== */
+.profile-input-group,
+.change-password-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-input-group label,
+.change-password-input-group label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.profile-input-group input,
+.change-password-input-group input {
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+/* ===== FILE ===== */
+.custom-file {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-file input {
+  display: none;
+}
+
+.custom-file span {
+  height: 42px;
+  width: 300px;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* FILE BUTTON (label) */
+.custom-file span:active,
+.custom-file span:focus,
+.custom-file span:hover {
+  background: #2563eb;
+
+  box-shadow:
+    0 0 0 2px rgba(59, 130, 246, 0.35),
+    0 8px 18px rgba(0, 0, 0, 0.3);
+
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* ===== BUTTONS ===== */
+.Profile-Card button,
+.change-password-button {
+  height: 44px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: var(--green-border);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Profile-Card button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  -webkit-filter: brightness(1.08);
+}
+/* ===== MESSAGES ===== */
+.profile-success,
+.change-password-success {
+  text-align: center;
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.profile-error,
+.change-password-error {
+  text-align: center;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* ===== SWITCH ===== */
+.profile-switch {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.profile-switch .arrow {
+  font-size: 20px;
+  transition: transform 0.25s ease;
+}
+
+.profile-switch.right:hover .arrow {
+  transform: translateX(6px);
+}
+
+.profile-switch.left:hover .arrow {
+  transform: translateX(-6px);
+}
+
+.profile-switch:hover {
+  color: white;
+}
+.Profile-Container input:focus {
+  outline: none;
+  border: 1px solid var(--green-border);
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 0 0 2px rgba(74, 222, 128, 0.25),
+    0 8px 20px rgba(0, 0, 0, 0.25);
+
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}

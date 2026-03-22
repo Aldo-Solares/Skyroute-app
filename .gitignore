@@ -1,0 +1,40 @@
+# ======================
+# BACKEND (Spring Boot)
+# ======================
+/target/
+logs/
+*.log
+uploads/
+
+# ======================
+# FRONTEND (React)
+# ======================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# logs frontend
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ======================
+# ENV FILES
+# ======================
+.env
+
+# ======================
+# IDE / EDITORS
+# ======================
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

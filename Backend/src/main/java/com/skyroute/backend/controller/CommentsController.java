@@ -1,0 +1,75 @@
+package com.skyroute.backend.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.skyroute.backend.records.CommentRecord;
+import com.skyroute.backend.records.CommentStatsRecord;
+import com.skyroute.backend.service.CommentsService;
+
+/*
+ * Controller to interact with comments
+ */
+
+@RestController
+@RequestMapping("/api/comments")
+public class CommentsController {
+
+	@Autowired
+	private CommentsService commentsService;
+
+	@PostMapping(consumes = { "multipart/form-data" })
+	public ResponseEntity<CommentRecord> addComment(
+			@RequestPart("commentData") CommentRecord commRecord,
+			@RequestPart(value = "files", required = false) List<MultipartFile> files,
+			@RequestPart("userName") String userName,
+			@RequestPart("placeName") String placeName) {
+
+		CommentRecord response = commentsService.createComm(commRecord, files, userName, placeName);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	}
+
+	@GetMapping("/place/{placeName}")
+	public ResponseEntity<List<CommentRecord>> getCommentsByPlace(@PathVariable String placeName) {
+
+		List<CommentRecord> comments = commentsService.getCommentsByPlace(placeName);
+
+		return ResponseEntity.ok(comments);
+	}
+
+	@GetMapping("/stats/{placeName}")
+	public CommentStatsRecord getStats(@PathVariable String placeName) {
+		return commentsService.getCommentsStats(placeName);
+	}
+
+	@PutMapping
+	public ResponseEntity<String> updateComm(
+			@RequestPart("commentData") CommentRecord commRecord,
+			@RequestPart("newCommentData") CommentRecord commRecordNew,
+			@RequestPart("placeName") String placeName,
+			@RequestPart(value = "images", required = false) List<MultipartFile> img) {
+		commentsService.updateComm(commRecord, commRecordNew, placeName, img);
+		return new ResponseEntity<>("Successfully updated", HttpStatus.CREATED);
+	}
+
+	@DeleteMapping
+	public ResponseEntity<String> delete(
+			@RequestPart("commentData") CommentRecord commRecord,
+			@RequestPart("placeName") String placeName) {
+		commentsService.delete(commRecord, placeName);
+		return new ResponseEntity<>("Successfully deleted", HttpStatus.CREATED);
+	}
+}

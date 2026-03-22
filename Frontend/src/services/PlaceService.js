@@ -1,0 +1,88 @@
+import api from '../api/AxiosConfig'
+import { getUser } from '../storage/StorageService'
+
+// =========================
+// CREATE (JSON + FILES)
+// =========================
+export const createPlace = async (placeData, files, categoryName) => {
+  const formData = new FormData()
+
+  formData.append('placeData', JSON.stringify(placeData))
+
+  if (Array.isArray(files) && files.length > 0) {
+    files.forEach(file => formData.append('files', file))
+  }
+
+  formData.append('categoryName', categoryName)
+
+  const { data } = await api.post('/places', formData)
+
+  return data
+}
+
+// =========================
+// UPDATE (JSON + OPTIONAL FILES)
+// =========================
+export const updatePlace = async (
+  placeData,
+  files,
+  categoryName,
+  originalName
+) => {
+  const formData = new FormData()
+
+  formData.append('placeData', JSON.stringify(placeData))
+
+  if (Array.isArray(files) && files.length > 0) {
+    files.forEach(file => formData.append('files', file))
+  }
+
+  formData.append('categoryName', categoryName)
+  formData.append('originalName', originalName)
+
+  const { data } = await api.put('/places', formData)
+
+  return data
+}
+
+// =========================
+// GET ALL PLACES
+// =========================
+export const getAllPlaces = async () => {
+  const { data } = await api.get('/places')
+  return data
+}
+
+// =========================
+// GET BY CATEGORY + USER
+// =========================
+export const getPlacesByCategory = async categoryName => {
+  const userName = getUser()
+
+  if (!userName) {
+    throw new Error('User not found')
+  }
+
+  const { data } = await api.get(
+    `/places/category/${encodeURIComponent(categoryName)}/user/${encodeURIComponent(userName)}`
+  )
+
+  return data
+}
+
+// =========================
+// DELETE PLACE
+// =========================
+export const deletePlace = async placeName => {
+  await api.delete(`/places/${encodeURIComponent(placeName)}`)
+}
+
+// =========================
+// COMMENTS STATS
+// =========================
+export const getCommentsStats = async placeName => {
+  const { data } = await api.get(
+    `/comments/stats/${encodeURIComponent(placeName)}`
+  )
+  return data
+}
