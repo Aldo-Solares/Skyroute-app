@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skyroute.backend.records.PlaceRecord;
 import com.skyroute.backend.service.PlaceService;
 
@@ -15,54 +13,38 @@ import com.skyroute.backend.service.PlaceService;
 public class PlaceController {
 
 	private final PlaceService placeService;
-	private final ObjectMapper objectMapper;
 
-	public PlaceController(PlaceService placeService, ObjectMapper objectMapper) {
+	public PlaceController(PlaceService placeService) {
 		this.placeService = placeService;
-		this.objectMapper = objectMapper;
 	}
 
 	// =========================
 	// CREATE (JSON + FILES)
 	// =========================
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> createPlace(
-			@RequestPart("placeData") String placeJson,
+	public ResponseEntity<PlaceRecord> createPlace(
+			@RequestPart("placeData") PlaceRecord place,
 			@RequestPart(value = "files", required = false) List<MultipartFile> files,
-			@RequestPart("categoryName") String categoryName) {
+			@RequestParam String categoryName) {
 
-		try {
-			PlaceRecord placeRecord = objectMapper.readValue(placeJson, PlaceRecord.class);
+		PlaceRecord response = placeService.createPlace(place, files, categoryName);
 
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(placeService.createPlace(placeRecord, files, categoryName));
-
-		} catch (Exception e) {
-			return ResponseEntity.badRequest()
-					.body(e.getMessage());
-		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
 	// =========================
 	// UPDATE (JSON + FILES opcional)
 	// =========================
 	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> updatePlace(
-			@RequestPart("placeData") String placeJson,
+	public ResponseEntity<PlaceRecord> updatePlace(
+			@RequestPart("placeData") PlaceRecord place,
 			@RequestPart(value = "files", required = false) List<MultipartFile> files,
-			@RequestPart("categoryName") String categoryName,
-			@RequestPart("originalName") String originalName) {
+			@RequestParam String categoryName,
+			@RequestParam String originalName) {
 
-		try {
-			PlaceRecord placeRecord = objectMapper.readValue(placeJson, PlaceRecord.class);
+		PlaceRecord response = placeService.updatePlace(place, files, categoryName, originalName);
 
-			return ResponseEntity.ok(
-					placeService.updatePlace(placeRecord, files, categoryName, originalName));
-
-		} catch (Exception e) {
-			return ResponseEntity.badRequest()
-					.body(e.getMessage());
-		}
+		return ResponseEntity.ok(response);
 	}
 
 	// =========================
@@ -90,7 +72,9 @@ public class PlaceController {
 	// =========================
 	@DeleteMapping("/{placeName}")
 	public ResponseEntity<String> deletePlace(@PathVariable String placeName) {
+
 		placeService.deletePlace(placeName);
+
 		return ResponseEntity.ok("Delete successfully!");
 	}
 }
