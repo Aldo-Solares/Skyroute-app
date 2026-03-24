@@ -1,44 +1,52 @@
-import api from "../api/AxiosConfig";
+import api from '../api/AxiosConfig'
+
 export async function getCategoriesRequest() {
-  const { data } = await api.get("/category");
-  return data;
+  const { data } = await api.get('/category')
+  return data
 }
 
-export const createCategoryRequest = async (category) => {
-  const formData = new FormData();
+export const createCategoryRequest = async category => {
+  const formData = new FormData()
 
   formData.append(
-    "categoryData",
-    JSON.stringify({
-      categoryName: category.name,
-      description: category.description,
-    }),
-  );
+    'categoryData',
+    new Blob(
+      [
+        JSON.stringify({
+          categoryName: category.name,
+          description: category.description
+        })
+      ],
+      { type: 'application/json' }
+    )
+  )
 
-  formData.append("img", category.image);
+  formData.append('img', category.image)
 
-  return api.post("/category", formData);
-};
+  return api.post('/category', formData)
+}
 
 export async function deleteCategoryRequest(name) {
-  await api.delete(`/category/${name}`);
+  await api.delete(`/category/${name}`)
 }
 
 export async function updateCategoryRequest(
   name,
-  { categoryName, description, image },
+  { categoryName, description, image }
 ) {
-  const formData = new FormData();
+  const formData = new FormData()
 
   formData.append(
-    "categoryData",
-    JSON.stringify({ categoryName, description }),
-  );
+    'categoryData',
+    new Blob([JSON.stringify({ categoryName, description })], {
+      type: 'application/json'
+    })
+  )
 
   if (image) {
-    formData.append("img", image);
+    formData.append('img', image)
   }
 
-  const { data } = await api.put(`/category/${name}`, formData);
-  return data;
+  const { data } = await api.put(`/category/${name}`, formData)
+  return data
 }

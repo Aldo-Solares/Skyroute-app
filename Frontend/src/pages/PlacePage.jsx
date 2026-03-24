@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom'
 import './PlacePage.css'
 
 import PlaceGrid from '../components/PlaceGrid'
-import PlaceModal from '../components/PlaceModal'
-import PlaceSearchModal from '../components/PlaceSearchModal'
+import CommentsModal from '../components/modals/CommentsModal'
+import PlaceSearchModal from '../components/modals/PlaceSearchModal'
 
 import {
   getAllPlaces,
@@ -31,7 +31,6 @@ function PlacePage() {
       try {
         setLoading(true)
 
-        // ✅ Places
         const placesData = categoryName
           ? await getPlacesByCategory(categoryName)
           : await getAllPlaces()
@@ -46,7 +45,6 @@ function PlacePage() {
 
         setPlaces(normalizedPlaces)
 
-        // ✅ Stats
         const statsData = {}
         await Promise.all(
           normalizedPlaces.map(async (place) => {
@@ -59,7 +57,6 @@ function PlacePage() {
         )
         setStats(statsData)
 
-        // ✅ Category
         const categories = await getCategoriesRequest()
         const found = categories.find(
           (c) => c.categoryName.toLowerCase() === categoryName?.toLowerCase(),
@@ -127,7 +124,7 @@ function PlacePage() {
       />
 
       {/* MODALS */}
-      <PlaceModal
+      <CommentsModal
         isOpen={Boolean(openPlace)}
         placeName={openPlace}
         onClose={() => setOpenPlace(null)}

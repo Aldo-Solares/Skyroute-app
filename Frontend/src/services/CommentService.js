@@ -1,5 +1,6 @@
 import api from '../api/AxiosConfig'
 
+/* ===== CREATE ===== */
 export const createComment = async ({
   text,
   rate,
@@ -20,17 +21,15 @@ export const createComment = async ({
   formData.append('userName', userName)
   formData.append('placeName', placeName)
 
-  if (files?.length) {
-    files.forEach(file => {
-      formData.append('files', file)
-    })
-  }
+  files.forEach(file => {
+    formData.append('files', file)
+  })
 
-  const { data } = await api.post('/comments', formData, {})
-
+  const { data } = await api.post('/comments', formData)
   return data
 }
 
+/* ===== GET ===== */
 export const getCommentsByPlace = async placeName => {
   const { data } = await api.get(
     `/comments/place/${encodeURIComponent(placeName)}`
@@ -38,6 +37,7 @@ export const getCommentsByPlace = async placeName => {
   return data
 }
 
+/* ===== DELETE ===== */
 export const deleteComment = async ({ text, rate, date, placeName }) => {
   const formData = new FormData()
 
@@ -50,21 +50,16 @@ export const deleteComment = async ({ text, rate, date, placeName }) => {
 
   formData.append('placeName', placeName)
 
-  const { data } = await api.delete('/comments', {
-    data: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  })
-
+  const { data } = await api.delete('/comments', { data: formData })
   return data
 }
 
+/* ===== UPDATE ===== */
 export const updateComment = async ({
   oldComment,
   newComment,
   placeName,
-  files
+  files = []
 }) => {
   const formData = new FormData()
 
@@ -84,17 +79,10 @@ export const updateComment = async ({
 
   formData.append('placeName', placeName)
 
-  if (files && files.length > 0) {
-    files.forEach(file => {
-      formData.append('images', file)
-    })
-  }
-
-  const { data } = await api.put('/comments', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+  files.forEach(file => {
+    formData.append('files', file)
   })
 
+  const { data } = await api.put('/comments', formData)
   return data
 }

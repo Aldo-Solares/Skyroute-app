@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import UpdateProfile from '../forms/UpdateProfile'
-import ProfilePassword from '../forms/ProfilePassword'
+import UpdateProfile from '../components/forms/UpdateProfile'
+import ProfilePassword from '../components/forms/ProfilePassword'
 import './ProfileSettings.css'
 
 function ProfileSettings() {

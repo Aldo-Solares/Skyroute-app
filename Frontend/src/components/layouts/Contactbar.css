@@ -1,0 +1,93 @@
+/* ===== BASE ===== */
+.Contactbar-Container {
+  width: 100%;
+  padding: 14px 0;
+
+  color: white;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+/* ===== NORMAL MODE ===== */
+.Contactbar-Container.normal {
+  background: var(--blue-color);
+
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== TRANSPARENT (GLASS) ===== */
+.Contactbar-Container.transparent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  background: rgba(59, 130, 246, 0.25); /* mismo azul pero transparente */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.3);
+
+  z-index: 10;
+}
+
+/* ===== TITLE ===== */
+.Contactbar-Container h1 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+
+  letter-spacing: 0.6px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== INFO TEXT ===== */
+.Contactbar-Container p {
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.9;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== EFECTO SUTIL DE BRILLO ===== */
+.Contactbar-Container.normal::before,
+.Contactbar-Container.transparent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+
+  opacity: 0.6;
+}
+
+/* ===== ESPACIO PARA FOOTER FIJO ===== */
+.has-fixed-footer {
+  padding-bottom: 80px;
+}
+
+.favoritesEmpty {
+  padding: 40px;
+}

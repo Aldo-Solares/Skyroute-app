@@ -2,7 +2,7 @@ import './PlaceGrid.css'
 import { useState } from 'react'
 import LikeButton from './LikeButton'
 import PlaceCarousel from './PlaceCarousel'
-import PlaceUpdateForm from '../forms/PlaceUpdateForm'
+import PlaceUpdateForm from '../components/forms/PlaceUpdateForm'
 import StarRating from './StarRating'
 function PlaceGrid({ places, stats, onOpenPlace, onDelete, onUpdate }) {
   const role = localStorage.getItem('Role')

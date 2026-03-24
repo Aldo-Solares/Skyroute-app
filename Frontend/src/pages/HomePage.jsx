@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import './HomePage.css'
 
 import HomeGrid from '../components/HomeGrid'
-import HomeSearchModal from '../components/HomeSearchModal'
-import CategoryUpdateForm from '../forms/CategoryUpdateForm'
+import HomeSearchModal from '../components/modals/HomeSearchModal'
+import CategoryUpdateForm from '../components/forms/CategoryUpdateForm'
 
 import { getCategoriesRequest } from '../services/CategoryService'
 import { getAllPlaces } from '../services/PlaceService'

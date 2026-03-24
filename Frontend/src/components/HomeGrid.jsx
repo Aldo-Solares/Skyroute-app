@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './HomeGrid.css'
 import { Link } from 'react-router-dom'
-import CategoryForm from '../forms/CategoryUpdateForm'
+import CategoryForm from '../components/forms/CategoryUpdateForm'
 import { deleteCategoryRequest } from '../services/CategoryService'
 
 function HomeGrid({ category = [] }) {
