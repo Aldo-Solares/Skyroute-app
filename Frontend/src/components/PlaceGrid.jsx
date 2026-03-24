@@ -4,6 +4,7 @@ import LikeButton from './LikeButton'
 import PlaceCarousel from './PlaceCarousel'
 import PlaceUpdateForm from '../components/forms/PlaceUpdateForm'
 import StarRating from './StarRating'
+
 function PlaceGrid({ places, stats, onOpenPlace, onDelete, onUpdate }) {
   const role = localStorage.getItem('Role')
 
@@ -13,7 +14,7 @@ function PlaceGrid({ places, stats, onOpenPlace, onDelete, onUpdate }) {
   if (!places.length) {
     return <p style={{ padding: '2rem' }}>No places found.</p>
   }
-  console.log(places)
+
   return (
     <div className="layoutWithSidebar">
       {/* HERO */}
@@ -68,39 +69,54 @@ function PlaceGrid({ places, stats, onOpenPlace, onDelete, onUpdate }) {
               <div className="textBlock">
                 <div className="place-rating">
                   <h2>{placeName}</h2>
+
                   <StarRating
                     rating={Math.round(stats[placeName]?.average || 0)}
                     readonly
                     showNumbers={false}
                   />
+
                   <span className="rating-number">
                     {stats[placeName]?.average
                       ? stats[placeName].average.toFixed(1)
                       : '0.0'}
                   </span>
                 </div>
+
                 <p>Location: {place.location}</p>
                 <p>Best time to visit: {place.bestTime}</p>
                 <p>Category: {place.categoryName}</p>
                 <p>Comments count: {stats[placeName]?.count ?? 0}</p>
               </div>
-
-              {/* DELETE MODAL */}
-              {confirmDelete === placeName && (
-                <div className="deleteConfirm">
-                  <div className="deleteBox">
-                    <p>Delete "{placeName}"?</p>
-                    <button onClick={() => onDelete(placeName)}>Yes</button>
-                    <button onClick={() => setConfirmDelete(null)}>
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           )
         })}
       </section>
+
+      {/* DELETE MODAL GLOBAL */}
+      {confirmDelete && (
+        <div className="deleteConfirm">
+          <div className="deleteBox">
+            <p>Delete "{confirmDelete}"?</p>
+
+            <div className="deleteActions">
+              <button
+                className="btnYes"
+                onClick={() => onDelete(confirmDelete)}
+              >
+                Yes
+              </button>
+
+              <button
+                className="btnCancel"
+                onClick={() => setConfirmDelete(null)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* EDIT MODAL */}
       {selectedPlace && (
