@@ -35,7 +35,7 @@ SkyRoute is a full-stack travel platform that allows users to explore destinatio
 
 ## ⚙️ Installation
 
-### 📦 Backend Setup
+### Backend Setup
 
 1. Go to the backend folder:
 ```console
@@ -53,7 +53,7 @@ PORT=8080
 mvn spring-boot:run
 ```
 
-### 💻 Frontend Setup
+### Frontend Setup
 
 1. Go to the frontend folder:
 
@@ -78,7 +78,7 @@ npm run dev
 
 ---
 
-## 🧱 Project Structure
+## Project Structure
 
 SkyRoute/  
 │  
@@ -89,7 +89,10 @@ SkyRoute/
 
 ---
 
+## Authors
+
 - GitHub: https://github.com/Aldo-Solares
+- GitHub: https://github.com/Emilio-806
   
 ---
 
