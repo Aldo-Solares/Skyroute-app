@@ -10,7 +10,7 @@ import java.io.File;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Value("${file.upload-dir}")
+    @Value("${FILE_UPLOAD_DIR}")
     private String uploadDir;
 
     @Override

@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 public class FileService {
 
-    @Value("${file.upload-dir}")
+    @Value("${FILE_UPLOAD_DIR}")
     private String baseDir;
 
     public void validateImage(MultipartFile file) {
