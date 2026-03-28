@@ -45,7 +45,9 @@ cd BackEnd
 ```bash
 JWT_SECRET=your_secret_signature_for_JWT  
 DB_PASSWORD=your_mysql_password  
-PORT=8080  
+PORT=8080
+FILE_UPLOAD_DIR=Directory to save your files, must end with "/uploads"
+LOG_PATH=Directory to save your logs
 ```
 
 4. Run the backend:
