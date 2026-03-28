@@ -3,15 +3,8 @@ import api from '../api/AxiosConfig'
 export const updateUserProfile = async (originalUser, username, file) => {
   const formData = new FormData()
 
-  const userData = {
-    originalUsername: originalUser,
-    username
-  }
-
-  formData.append(
-    'userData',
-    new Blob([JSON.stringify(userData)], { type: 'application/json' })
-  )
+  formData.append('originalUsername', originalUser)
+  formData.append('newUsername', username)
 
   if (file) {
     formData.append('img', file)

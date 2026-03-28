@@ -15,6 +15,7 @@ public class SkyRouteApplication {
 		System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
 		System.setProperty("JWT_SECRET", dotenv.get("JWT_SECRET"));
 		System.setProperty("file.upload-dir", dotenv.get("FILE_UPLOAD_DIR"));
+		System.setProperty("LOG_PATH", dotenv.get("LOG_PATH"));
 		SpringApplication.run(SkyRouteApplication.class, args);
 
 	}

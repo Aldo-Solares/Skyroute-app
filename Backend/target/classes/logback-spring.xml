@@ -4,7 +4,7 @@
     <!-- PROPERTIES -->
     <!-- ========================= -->
     <property name="APP_NAME" value="skyroute-api"/>
-    <property name="LOG_PATH" value="C:/Users/ivans/OneDrive/Desktop/Skyroute-app/logs"/>
+    <property name="LOG_PATH" value="${LOG_PATH}"/>
     <property name="LOG_LEVEL" value="INFO"/>
 
     <!-- ========================= -->
